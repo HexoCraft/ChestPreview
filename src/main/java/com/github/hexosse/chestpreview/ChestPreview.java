@@ -81,9 +81,9 @@ public class ChestPreview extends BasePlugin
     {
         this.createChest = createChest;
         if(createChest)
-            pluginLogger.help(ChatColor.AQUA + messages.chatPrefix + ChatColor.WHITE +" " +  messages.Active, player);
+            pluginLogger.help(ChatColor.AQUA + messages.chatPrefix + ChatColor.WHITE +" " +  messages.active, player);
         else
-            pluginLogger.help(ChatColor.AQUA + messages.chatPrefix + ChatColor.WHITE +" " +  messages.Inactive, player);
+            pluginLogger.help(ChatColor.AQUA + messages.chatPrefix + ChatColor.WHITE +" " +  messages.inactive, player);
     }
 
     /**

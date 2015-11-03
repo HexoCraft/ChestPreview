@@ -58,14 +58,14 @@ public class Messages extends BaseConfig
 
     /* Messages */
     @ConfigComment(path = "messages")
-    @ConfigOptions(path = "messages.active")
-    public String Active;
+    @ConfigOptions(path = "messages.Active")
+    public String active;
     @ConfigComment()
-    @ConfigOptions(path = "messages.inactive")
-    public String Inactive;
+    @ConfigOptions(path = "messages.Inactive")
+    public String inactive;
     @ConfigComment()
-    @ConfigOptions(path = "messages.reloaded")
-    public String Reloaded;
+    @ConfigOptions(path = "messages.Reloaded")
+    public String reloaded;
 
 
     public Messages(File dataFolder, String filename)

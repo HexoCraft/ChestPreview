@@ -62,8 +62,8 @@ public class CommandReload extends BaseCommand<ChestPreview>
                 plugin.config.reloadConfig();
                 plugin.messages.reloadConfig();
 
-                pluginLogger.info(plugin.messages.Reloaded);
-                pluginLogger.help(ChatColor.RED + plugin.messages.Reloaded, player);
+                pluginLogger.info(plugin.messages.reloaded);
+                pluginLogger.help(ChatColor.RED + plugin.messages.reloaded, player);
 
             }
 

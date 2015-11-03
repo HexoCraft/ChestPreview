@@ -54,8 +54,8 @@ public class CommandHelp extends BaseCommand<ChestPreview>
 
         pluginLogger.help(ChatColor.YELLOW + "-----------------------------------------------", player);
         pluginLogger.help(ChatColor.YELLOW + plugin.getDescription().getName() + " help", player);
-        pluginLogger.help(ChatColor.AQUA + "/ChestPreview " + ChatColor.GREEN + "[create] :" + ChatColor.WHITE + " Enable ChestPreview creation", player);
-        pluginLogger.help(ChatColor.AQUA + "/ChestPreview " + ChatColor.GREEN + "[reload] :" + ChatColor.WHITE + " Reload ChestPreview", player);
+        pluginLogger.help(ChatColor.AQUA + "/ChestPreview " + ChatColor.GREEN + "[create] : " + ChatColor.WHITE + plugin.messages.helpCreate, player);
+        pluginLogger.help(ChatColor.AQUA + "/ChestPreview " + ChatColor.GREEN + "[reload] : " + ChatColor.WHITE + plugin.messages.helpReload, player);
         pluginLogger.help(ChatColor.YELLOW + "-----------------------------------------------", player);
     }
 }

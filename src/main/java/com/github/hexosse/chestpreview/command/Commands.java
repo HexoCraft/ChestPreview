@@ -50,8 +50,17 @@ public class Commands extends BaseObject<ChestPreview> implements CommandExecuto
         cmdCreate = new CommandCreate(plugin);
     }
 
+    /**
+     * Executes the given command, returning its success
+     *
+     * @param sender  Source of the command
+     * @param command Command which was executed
+     * @param label   Alias of the command which was used
+     * @param args    Passed command arguments
+     * @return true if a valid command, otherwise false
+     */
     @Override
-    public boolean onCommand(final CommandSender sender, Command cmd, String label, String[] args)
+    public boolean onCommand(final CommandSender sender, Command command, String label, String[] args)
     {
         if(!(sender instanceof Player))
             return false;
@@ -71,6 +80,17 @@ public class Commands extends BaseObject<ChestPreview> implements CommandExecuto
         return true;
     }
 
+    /**
+     * Requests a list of possible completions for a command argument.
+     *
+     * @param sender  Source of the command
+     * @param command Command which was executed
+     * @param alias   The alias used
+     * @param args    The arguments passed to the command, including final
+     *                partial argument to be completed and command label
+     * @return A List of possible completions for the final argument, or null
+     * to default to the command executor
+     */
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args)
     {

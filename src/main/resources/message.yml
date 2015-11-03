@@ -21,9 +21,9 @@ errors:
 
 #----------- Messages ------------------
 messages:
-  active: ChestPreview creation is active
-  inactive: ChestPreview creation is inactive
-  reloaded: ChestPreview has been reloaded
+  Active: ChestPreview creation is active
+  Inactive: ChestPreview creation is inactive
+  Reloaded: ChestPreview has been reloaded
 
 
 ############################################################

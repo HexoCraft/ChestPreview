@@ -1,0 +1,24 @@
+############################################################
+# | ChestPreview by hexosse                              | #
+############################################################
+
+
+# *---------------- Plugin configuration --------------------*
+plugin:
+  # Enable metrics
+  useMetrics : true
+  # Enable updater
+  useUpdater : true
+
+
+# *-------------- Messages configuration -----------------*
+# You can use the default messages provided or translate as you whish.
+messages: message.yml
+
+
+# *-------------- Chest location -----------------*
+# List all the chest location.
+chest.list: []
+
+
+############################################################

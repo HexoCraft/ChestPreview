@@ -1,0 +1,29 @@
+############################################################
+# | ChestPreview by hexosse                              | #
+############################################################
+
+#----------- Chat Options ------------------
+chat:
+  # Prefix used in the chat
+  prefix: '[ChestPreview]'
+
+
+#----------- Help messages ------------------
+help:
+  HelpCreate: Enable chest preview creation!
+  HelpReload: Reload ChestPreview!
+
+
+#----------- Error messages ------------------
+errors:
+  AccesDenied: You don't have permission to do that!
+
+
+#----------- Messages ------------------
+messages:
+  active: ChestPreview creation is active
+  inactive: ChestPreview creation is inactive
+  reloaded: ChestPreview has been reloaded
+
+
+############################################################

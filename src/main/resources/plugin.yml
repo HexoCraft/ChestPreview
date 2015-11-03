@@ -1,0 +1,24 @@
+name: ${project.name}
+version: ${project.version}
+description: ${project.description}
+main: com.github.hexosse.chestpreview.ChestPreview
+
+author: hexosse
+website: www.github.hexosse
+
+depend: []
+softdepend: []
+
+commands:
+  ChestPreview:
+    aliases: [cp]
+    usage: |
+           /ChestPreview help : ChestPreview help
+           /ChestPreview [create] : Next chest will be a chest preview
+
+permissions:
+  ChestPreview.admin: {description: Allows creation of chest preview to admin users, default: op}
+  ChestPreview.*:
+    default: op
+    children:
+        ChestPreview.admin: true

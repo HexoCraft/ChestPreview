@@ -70,6 +70,7 @@ public class ChestPreview extends BasePlugin
 
     /**
      * @param createChest Enable or Disable the plugin
+     * @param player the player which are creating the ChestPreview
      */
     public void setActive(boolean createChest, Player player)
     {

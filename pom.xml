@@ -223,8 +223,6 @@
                     </artifactSet>
                     <relocations>
                         <relocation>
-                            <pattern>uk.co.jacekk.bukkit.baseplugin</pattern>
-                            <!-- <shadedPattern>uk.co.jacekk.bukkit.baseplugin.v${baseplugin.package}</shadedPattern> -->
                             <shadedPattern>com.github.hexosee.baseplugin</shadedPattern>
                         </relocation>
                     </relocations>

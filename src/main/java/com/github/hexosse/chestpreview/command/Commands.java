@@ -82,7 +82,7 @@ public class Commands extends BaseObject<ChestPreview> implements CommandExecuto
         if(args.length==1 && args[0].isEmpty())
             return list;
 
-        // Retrourne les commandes en fonction de ce qui est déjà saisi
+        // Retrourne les commandes en fonction de ce qui est deja saisi
         if(args.length==1)
         {
             for(String s : list)

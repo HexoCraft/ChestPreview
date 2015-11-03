@@ -16,7 +16,7 @@ package com.github.hexosse.chestpreview.command;
  *    limitations under the License.
  */
 
-import com.github.hexosse.BasePlugin.BaseObject;
+import com.github.hexosse.baseplugin.BaseObject;
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.google.common.collect.Lists;
 import org.bukkit.command.Command;
@@ -25,7 +25,6 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.List;
 

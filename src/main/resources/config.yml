@@ -9,6 +9,8 @@ plugin:
   useMetrics : true
   # Enable updater
   useUpdater : true
+  # Download update
+  downloadUpdate: true
 
 
 # *-------------- Messages configuration -----------------*

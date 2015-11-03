@@ -16,8 +16,8 @@ package com.github.hexosse.chestpreview.configuration;
  *    limitations under the License.
  */
 
-import com.github.hexosse.BasePlugin.config.BaseConfig;
-import com.github.hexosse.BasePlugin.config.Location.LocationList;
+import com.github.hexosse.baseplugin.config.BaseConfig;
+import com.github.hexosse.baseplugin.config.Location.LocationList;
 
 import java.io.File;
 
@@ -46,6 +46,8 @@ public class Config extends BaseConfig
     public boolean useMetrics = (boolean) true;
     @ConfigOptions(path = "plugin.useUpdater")
     public boolean useUpdater = (boolean) true;
+    @ConfigOptions(path = "plugin.downloadUpdate")
+    public boolean downloadUpdate = (boolean) true;
 
     /* Message */
     @ConfigOptions(path = "messages")

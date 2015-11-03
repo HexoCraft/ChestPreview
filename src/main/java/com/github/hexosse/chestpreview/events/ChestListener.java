@@ -16,8 +16,8 @@ package com.github.hexosse.chestpreview.events;
  *    limitations under the License.
  */
 
-import com.github.hexosse.BasePlugin.Utils.ChestUtils;
-import com.github.hexosse.BasePlugin.event.BaseListener;
+import com.github.hexosse.baseplugin.event.BaseListener;
+import com.github.hexosse.baseplugin.utils.ChestUtils;
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
 import org.bukkit.block.Chest;

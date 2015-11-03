@@ -16,7 +16,7 @@ package com.github.hexosse.chestpreview.command;
  *    limitations under the License.
  */
 
-import com.github.hexosse.BasePlugin.command.BaseCommand;
+import com.github.hexosse.baseplugin.command.BaseCommand;
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
 import org.bukkit.ChatColor;

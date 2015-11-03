@@ -16,7 +16,7 @@ package com.github.hexosse.chestpreview.configuration;
  *    limitations under the License.
  */
 
-import com.github.hexosse.BasePlugin.config.BaseConfig;
+import com.github.hexosse.baseplugin.config.BaseConfig;
 
 import java.io.File;
 

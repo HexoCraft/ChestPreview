@@ -215,17 +215,12 @@
                     <finalName>${project.name}</finalName>
                     <artifactSet>
                         <includes>
-                            <!-- Force HBasePlugin à être compris dans le .jar-->
-                            <include>com.github.hexosse:HBasePlugin</include>
+                            <!-- Force BasePlugin à être compris dans le .jar-->
+                            <include>com.github.hexosse:BasePlugin</include>
                             <!-- Force GitHubUpdater à être compris dans le .jar-->
                             <include>com.github.hexosse:GitHubUpdater</include>
                         </includes>
                     </artifactSet>
-                    <relocations>
-                        <relocation>
-                            <shadedPattern>com.github.hexosee.baseplugin</shadedPattern>
-                        </relocation>
-                    </relocations>
                     <!-- utterly useless artifact from shade 2.x -->
                     <createDependencyReducedPom>false</createDependencyReducedPom>
                     <!-- Le fichier jar d'origine est renommé en original-XXXX.jar -->

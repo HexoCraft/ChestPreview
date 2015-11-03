@@ -1,15 +1,19 @@
 package com.github.hexosse.chestpreview;
 
-import com.github.hexosse.BasePlugin.BasePlugin;
+import com.github.hexosse.baseplugin.BasePlugin;
+import com.github.hexosse.baseplugin.metric.MetricsLite;
 import com.github.hexosse.chestpreview.command.Commands;
 import com.github.hexosse.chestpreview.configuration.Config;
 import com.github.hexosse.chestpreview.configuration.Messages;
 import com.github.hexosse.chestpreview.events.ChestListener;
 import com.github.hexosse.chestpreview.events.PlayerListener;
+import com.github.hexosse.githubupdater.GitHubUpdater;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
+
+import java.io.IOException;
 
 /**
  * This file is part ChestPreview
@@ -20,6 +24,7 @@ public class ChestPreview extends BasePlugin
 {
     public Config config = new Config(getDataFolder(), "config.yml");
     public Messages messages = new Messages(getDataFolder(), "message.yml");
+    private String repository = "hexosse/ChestPreview";
 
     private boolean createChest = false;
 
@@ -41,12 +46,12 @@ public class ChestPreview extends BasePlugin
         this.getCommand("cp").setTabCompleter(new Commands(this));
 
         /* Updater */
-        //if(this.getConfig().getBoolean("plugin.useUpdater"))
-        //    RunUpdater(this.getConfig().getBoolean("plugin.downloadUpdate"));
+        if(config.useUpdater)
+            RunUpdater(config.downloadUpdate);
 
         /* Metrics */
-        //if(this.getConfig().getBoolean("plugin.useMetrics"))
-        //    RunMetrics();
+        if(config.useMetrics)
+            RunMetrics();
     }
 
 
@@ -106,5 +111,30 @@ public class ChestPreview extends BasePlugin
     {
         config.chests.remove(chest.getLocation());
         config.save();
+    }
+
+    /**
+     * @param download
+     */
+    public void RunUpdater(final boolean download)
+    {
+        GitHubUpdater updater = new GitHubUpdater(this, this.repository, this.getFile(), download?GitHubUpdater.UpdateType.DEFAULT:GitHubUpdater.UpdateType.NO_DOWNLOAD, true);
+    }
+
+    /**
+     * Run metrics
+     */
+    private void RunMetrics()
+    {
+        try
+        {
+            MetricsLite metrics = new MetricsLite(this);
+            if(metrics.start())
+                pluginLogger.info("Succesfully started Metrics, see http://mcstats.org for more information.");
+            else
+                pluginLogger.info("Could not start Metrics, see http://mcstats.org for more information.");
+        } catch (IOException e){
+            // Failed to submit the stats :-(
+        }
     }
 }

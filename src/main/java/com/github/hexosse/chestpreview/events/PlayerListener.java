@@ -1,6 +1,6 @@
 package com.github.hexosse.chestpreview.events;
 
-import com.github.hexosse.BasePlugin.event.BaseListener;
+import com.github.hexosse.baseplugin.event.BaseListener;
 import com.github.hexosse.chestpreview.ChestPreview;
 
 /**

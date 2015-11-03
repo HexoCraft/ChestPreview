@@ -23,7 +23,7 @@
     <groupId>com.github.hexosse</groupId>
     <artifactId>ChestPreview</artifactId>
     <name>ChestPreview</name>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     <description>Create preview chest</description>
     <url>https://github.com/hexosse/ChestPreview</url>
@@ -47,8 +47,6 @@
         <spigot.version>1.8.8-R0.1-SNAPSHOT</spigot.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
-        <baseplugin.version>14</baseplugin.version>
-        <baseplugin.package>14</baseplugin.package>
     </properties>
 
 
@@ -240,7 +238,6 @@
                         <manifestEntries>
                             <Name>${project.name}</Name>
                             <Version>${project.version}</Version>
-                            <!-- <Build-Number>${BUILD_NUMBER}</Build-Number> -->
                         </manifestEntries>
                     </archive>
                 </configuration>

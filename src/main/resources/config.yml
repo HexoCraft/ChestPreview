@@ -15,7 +15,7 @@ plugin:
 
 # *-------------- Messages configuration -----------------*
 # You can use the default messages provided or translate as you whish.
-messages: message.yml
+messages: message_fr.yml
 
 
 # *-------------- Chest location -----------------*

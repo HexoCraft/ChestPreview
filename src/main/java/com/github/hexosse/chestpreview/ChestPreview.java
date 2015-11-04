@@ -35,6 +35,8 @@ public class ChestPreview extends BasePlugin
     {
         /* Chargement de la config */
         config.load();
+        if(config.message.compareTo("message.yml")!=0)
+            messages = new Messages(getDataFolder(), config.message);
         messages.load();
 
         /* Enregistrement des listeners */

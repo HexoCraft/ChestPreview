@@ -18,6 +18,7 @@ package com.github.hexosse.chestpreview.configuration;
 
 import com.github.hexosse.baseplugin.config.BaseConfig;
 import com.github.hexosse.baseplugin.config.Location.LocationList;
+import com.github.hexosse.chestpreview.ChestPreview;
 
 import java.io.File;
 
@@ -38,7 +39,7 @@ import java.io.File;
         "############################################################"
 })
 
-public class Config extends BaseConfig
+public class Config extends BaseConfig<ChestPreview>
 {
     /* Plugin */
     @ConfigComment(path = "plugin")
@@ -62,9 +63,9 @@ public class Config extends BaseConfig
      * @param dataFolder Folder that contains the config file
      * @param filename   Name of the config file
      */
-    public Config(File dataFolder, String filename)
+    public Config(ChestPreview plugin, File dataFolder, String filename)
     {
-        super(new File(dataFolder, filename), filename);
+        super(plugin, new File(dataFolder, filename), filename);
     }
 
     public void reloadConfig() {

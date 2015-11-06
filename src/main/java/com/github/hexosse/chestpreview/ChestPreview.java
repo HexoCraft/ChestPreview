@@ -22,8 +22,8 @@ import java.io.IOException;
  */
 public class ChestPreview extends BasePlugin
 {
-    public Config config = new Config(getDataFolder(), "config.yml");
-    public Messages messages = new Messages(getDataFolder(), "message.yml");
+    public Config config = null;
+    public Messages messages = null;
     private String repository = "hexosse/ChestPreview";
 
     private boolean createChest = false;
@@ -34,10 +34,8 @@ public class ChestPreview extends BasePlugin
     public void onEnable()
     {
         /* Chargement de la config */
-        config.load();
-        if(config.message.compareTo("message.yml")!=0)
-            messages = new Messages(getDataFolder(), config.message);
-        messages.load();
+        config = new Config(this, getDataFolder(), "config.yml");           config.load();
+        messages = new Messages(this, getDataFolder(), config.message);     messages.load();
 
         /* Enregistrement des listeners */
         Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);

@@ -17,7 +17,7 @@ package com.github.hexosse.chestpreview.events;
  */
 
 import com.github.hexosse.baseplugin.event.BaseListener;
-import com.github.hexosse.baseplugin.utils.ChestUtils;
+import com.github.hexosse.baseplugin.utils.ChestUtil;
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
 import org.bukkit.block.Chest;
@@ -50,11 +50,11 @@ public class ChestListener extends BaseListener<ChestPreview>
     public void onBlockPlace(BlockPlaceEvent event)
     {
         // Récupère le Chest
-        Chest chest = ChestUtils.getChest(event.getBlockPlaced());
+        Chest chest = ChestUtil.getChest(event.getBlockPlaced());
         if(chest == null) return;
 
         // Test si on cherche à mettre un coffre à coté d'un autre coffre
-        Chest nearbyChest = ChestUtils.getChestNearby(chest.getLocation());
+        Chest nearbyChest = ChestUtil.getChestNearby(chest.getLocation());
 
         // Test si il s'agit d'un chest preview
         boolean isChestPreview = nearbyChest != null ? plugin.isChestPreview(nearbyChest) : false;
@@ -82,7 +82,7 @@ public class ChestListener extends BaseListener<ChestPreview>
     public void onChestCombine(BlockCanBuildEvent event)
     {
         // Récupère le Chest
-        Chest chest = ChestUtils.getChest(event.getBlock());
+        Chest chest = ChestUtil.getChest(event.getBlock());
         if(chest == null) return;
 
     }
@@ -95,7 +95,7 @@ public class ChestListener extends BaseListener<ChestPreview>
     public void onBlockBreak(BlockBreakEvent event)
     {
         // Récupère le Chest
-        Chest chest = ChestUtils.getChest(event.getBlock());
+        Chest chest = ChestUtil.getChest(event.getBlock());
         if(chest == null) return;
 
         // Test si le Chest est un ChestPreview
@@ -127,8 +127,8 @@ public class ChestListener extends BaseListener<ChestPreview>
         InventoryHolder holderDestination = event.getDestination().getHolder();
 
         // Récupère le Chest
-        Chest chestSource = ChestUtils.getChest(holderSource);
-        Chest chestDestination = ChestUtils.getChest(holderDestination);
+        Chest chestSource = ChestUtil.getChest(holderSource);
+        Chest chestDestination = ChestUtil.getChest(holderDestination);
 
         // Empêche un item de sortir du coffre
         if(chestSource != null && plugin.isChestPreview(chestSource) == true)
@@ -157,12 +157,12 @@ public class ChestListener extends BaseListener<ChestPreview>
         InventoryHolder holder = event.getInventory().getHolder();
 
         // Test si il s'agit d'un coffre
-        if(ChestUtils.isChest(holder) == false && ChestUtils.isDoubleChest(holder) == false) return;
+        if(ChestUtil.isChest(holder) == false && ChestUtil.isDoubleChest(holder) == false) return;
 
         // Test si le Chest est un ChestPreview
-        if(ChestUtils.isChest(holder) == true && plugin.isChestPreview(ChestUtils.getChest(holder)) == false)
+        if(ChestUtil.isChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(holder)) == false)
             return;
-        if(ChestUtils.isDoubleChest(holder) == true && plugin.isChestPreview(ChestUtils.getChest(ChestUtils.getDoubleChest(holder).getLeftSide())) == false)
+        if(ChestUtil.isDoubleChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(ChestUtil.getDoubleChest(holder).getLeftSide())) == false)
             return;
 
         // Test si le joueur à la permission de détruire le coffre

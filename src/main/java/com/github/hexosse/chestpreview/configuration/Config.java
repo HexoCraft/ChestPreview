@@ -59,10 +59,6 @@ public class Config extends BaseConfig<ChestPreview>
     public LocationList chests = new LocationList();
 
 
-    /**
-     * @param dataFolder Folder that contains the config file
-     * @param filename   Name of the config file
-     */
     public Config(ChestPreview plugin, File dataFolder, String filename)
     {
         super(plugin, new File(dataFolder, filename), filename);

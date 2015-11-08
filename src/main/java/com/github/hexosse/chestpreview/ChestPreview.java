@@ -113,10 +113,7 @@ public class ChestPreview extends BasePlugin
         config.save();
     }
 
-    /**
-     * @param download
-     */
-    public void RunUpdater(final boolean download)
+     public void RunUpdater(final boolean download)
     {
         GitHubUpdater updater = new GitHubUpdater(this, this.repository, this.getFile(), download?GitHubUpdater.UpdateType.DEFAULT:GitHubUpdater.UpdateType.NO_DOWNLOAD, true);
     }

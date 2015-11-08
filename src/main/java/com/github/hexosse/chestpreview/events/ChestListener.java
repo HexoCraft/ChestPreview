@@ -17,7 +17,7 @@ package com.github.hexosse.chestpreview.events;
  */
 
 import com.github.hexosse.baseplugin.event.BaseListener;
-import com.github.hexosse.baseplugin.utils.ChestUtil;
+import com.github.hexosse.baseplugin.utils.block.ChestUtil;
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
 import org.bukkit.block.Chest;

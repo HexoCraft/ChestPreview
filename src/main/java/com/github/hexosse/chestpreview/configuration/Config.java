@@ -52,7 +52,7 @@ public class Config extends BaseConfig<ChestPreview>
 
     /* Message */
     @ConfigOptions(path = "messages")
-    public String message = "messages.yml";
+    public String messages = "messages.yml";
 
     /* Chest */
     @ConfigOptions(path = "chest.list")

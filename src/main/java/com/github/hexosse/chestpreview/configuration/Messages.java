@@ -67,6 +67,12 @@ public class Messages extends BaseConfig<ChestPreview>
     @ConfigComment()
     @ConfigOptions(path = "messages.Reloaded")
     public String reloaded;
+    @ConfigComment()
+    @ConfigOptions(path = "messages.Created")
+    public String created;
+    @ConfigComment()
+    @ConfigOptions(path = "messages.Destroyed")
+    public String destroyed;
 
 
     public Messages(ChestPreview plugin, File dataFolder, String filename)

@@ -24,6 +24,8 @@ messages:
   Active: "La cr\xe9ation d'un ChestPreview est activ\xe9"
   Inactive: "La cr\xe9ation d'un ChestPreview est d\xe9sactiv\xe9"
   Reloaded: "ChestPreview \xe0 \xe9t\xe9 recharg\xe9"
+  Created: "ChestPreview cr\xe9\xe9e \xe0 la position"
+  Destroyed: "ChestPreview d\xe9truit \xe0 la position"
 
 
 ############################################################

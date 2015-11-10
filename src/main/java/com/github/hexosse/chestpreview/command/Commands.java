@@ -38,6 +38,7 @@ public class Commands extends BaseObject<ChestPreview> implements CommandExecuto
     private CommandHelp cmdHelp = null;
     private CommandReload cmdReload = null;
     private CommandCreate cmdCreate = null;
+    private CommandList cmdList = null;
 
     /**
      * @param plugin The plugin that this object belong to.
@@ -48,6 +49,7 @@ public class Commands extends BaseObject<ChestPreview> implements CommandExecuto
         cmdHelp = new CommandHelp(plugin);
         cmdReload = new CommandReload(plugin);
         cmdCreate = new CommandCreate(plugin);
+        cmdList = new CommandList(plugin);
     }
 
     /**
@@ -74,6 +76,9 @@ public class Commands extends BaseObject<ChestPreview> implements CommandExecuto
         else if(args[0].equalsIgnoreCase("create"))
             cmdCreate.execute(sender);
 
+        else if(args[0].equalsIgnoreCase("list"))
+            cmdList.execute(sender);
+
         else
             return false;
 
@@ -94,7 +99,7 @@ public class Commands extends BaseObject<ChestPreview> implements CommandExecuto
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args)
     {
-        List<String> list = Arrays.asList("create", "reload", "help");
+        List<String> list = Arrays.asList("create", "list", "reload", "help");
         List<String> fList = Lists.newArrayList();
 
         // Retrourne toutes les commandes

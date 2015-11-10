@@ -17,9 +17,11 @@ package com.github.hexosse.chestpreview.events;
  */
 
 import com.github.hexosse.baseplugin.event.BaseListener;
+import com.github.hexosse.baseplugin.utils.LocationUtil;
 import com.github.hexosse.baseplugin.utils.block.ChestUtil;
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
+import org.bukkit.ChatColor;
 import org.bukkit.block.Chest;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -73,6 +75,9 @@ public class ChestListener extends BaseListener<ChestPreview>
         // Sauvegarde du chestpreview
         plugin.addChestPreview(chest);
 
+        // Message
+        pluginLogger.help(ChatColor.AQUA + plugin.messages.chatPrefix + ChatColor.WHITE + " " +  plugin.messages.created + " " +  LocationUtil.locationToString(chest.getLocation()), event.getPlayer());
+
         // Fin de la création
         plugin.setActive(false,event.getPlayer());
     }
@@ -84,7 +89,6 @@ public class ChestListener extends BaseListener<ChestPreview>
         // Récupère le Chest
         Chest chest = ChestUtil.getChest(event.getBlock());
         if(chest == null) return;
-
     }
 
 
@@ -108,6 +112,9 @@ public class ChestListener extends BaseListener<ChestPreview>
 
         // Si oui, supprimer de la liste des coffres
         plugin.removeChestPreview(chest);
+
+        // Message
+        pluginLogger.help(ChatColor.AQUA + plugin.messages.chatPrefix + ChatColor.WHITE + " " +  plugin.messages.destroyed + " " +  LocationUtil.locationToString(chest.getLocation()), event.getPlayer());
     }
 
 

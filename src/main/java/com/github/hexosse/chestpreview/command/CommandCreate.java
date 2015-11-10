@@ -48,7 +48,7 @@ public class CommandCreate extends BaseCommand<ChestPreview>
 
         if(!Permissions.has(sender, Permissions.ADMIN))
         {
-            pluginLogger.help(ChatColor.RED +plugin.messages.AccesDenied, player);
+            pluginLogger.help(ChatColor.RED + plugin.messages.AccesDenied, player);
             return;
         }
 

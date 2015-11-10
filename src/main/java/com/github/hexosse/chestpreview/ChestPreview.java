@@ -35,7 +35,7 @@ public class ChestPreview extends BasePlugin
     {
         /* Chargement de la config */
         config = new Config(this, getDataFolder(), "config.yml");           config.load();
-        messages = new Messages(this, getDataFolder(), config.message);     messages.load();
+        messages = new Messages(this, getDataFolder(), config.messages);     messages.load();
 
         /* Enregistrement des listeners */
         Bukkit.getPluginManager().registerEvents(new PlayerListener(this), this);

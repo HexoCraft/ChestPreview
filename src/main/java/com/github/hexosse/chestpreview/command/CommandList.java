@@ -1,5 +1,3 @@
-package com.github.hexosse.chestpreview.command;
-
 /*
  * Copyright 2015 hexosse
  *
@@ -16,26 +14,29 @@ package com.github.hexosse.chestpreview.command;
  *    limitations under the License.
  */
 
+package com.github.hexosse.chestpreview.command;
+
 import com.github.hexosse.baseplugin.command.BaseCommand;
+import com.github.hexosse.baseplugin.utils.LocationUtil;
+import com.github.hexosse.baseplugin.utils.NumberUtil;
 import com.github.hexosse.chestpreview.ChestPreview;
-import com.github.hexosse.chestpreview.configuration.Messages;
 import com.github.hexosse.chestpreview.configuration.Permissions;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 /**
- * This file is part of ChestPreview
+ * This file is part ChestPreview
  *
- * @author <b>hexosse</b> (<a href="https://github.com/hexosse">hexosse on GitHub</a>).
+ * @author <b>hexosse</b> (<a href="https://github.comp/hexosse">hexosse on GitHub</a>))
  */
-public class CommandReload extends BaseCommand<ChestPreview>
+public class CommandList extends BaseCommand<ChestPreview>
 {
     /**
      * @param plugin The plugin that this object belong to.
      */
-    public CommandReload(ChestPreview plugin)
+    public CommandList(ChestPreview plugin)
     {
         super(plugin);
     }
@@ -54,23 +55,13 @@ public class CommandReload extends BaseCommand<ChestPreview>
             return;
         }
 
-        new BukkitRunnable()
-        {
-            @Override
-            public void run()
-            {
+        if(plugin.config.chests.size()==0)
+            return;
 
-                plugin.config.reloadConfig();
-
-                if(!plugin.messages.GetTemplateName().equalsIgnoreCase(plugin.config.messages))
-                    plugin.messages = new Messages(plugin, plugin.getDataFolder(), plugin.config.messages);
-                plugin.messages.reloadConfig();
-
-                pluginLogger.info(plugin.messages.reloaded);
-                pluginLogger.help(ChatColor.RED + plugin.messages.reloaded, player);
-
-            }
-
-        }.runTask(plugin);
+        pluginLogger.help(ChatColor.YELLOW + "-----------------------------------------------", player);
+        pluginLogger.help(ChatColor.YELLOW + plugin.getDescription().getName() + " list (" + String.valueOf(plugin.config.chests.size()) + ")", player);
+        for(Location location : plugin.config.chests)
+            pluginLogger.help(ChatColor.WHITE + LocationUtil.locationToString(location), player);
+        pluginLogger.help(ChatColor.YELLOW + "-----------------------------------------------", player);
     }
 }

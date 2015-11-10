@@ -24,6 +24,8 @@ messages:
   Active: ChestPreview creation is active
   Inactive: ChestPreview creation is inactive
   Reloaded: ChestPreview has been reloaded
+  Created: ChestPreview created at location
+  Destroyed: ChestPreview destroyed at location
 
 
 ############################################################

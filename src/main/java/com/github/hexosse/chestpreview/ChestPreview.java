@@ -2,6 +2,7 @@ package com.github.hexosse.chestpreview;
 
 import com.github.hexosse.baseplugin.BasePlugin;
 import com.github.hexosse.baseplugin.metric.MetricsLite;
+import com.github.hexosse.baseplugin.utils.block.ChestUtil;
 import com.github.hexosse.chestpreview.command.Commands;
 import com.github.hexosse.chestpreview.configuration.Config;
 import com.github.hexosse.chestpreview.configuration.Messages;
@@ -10,6 +11,8 @@ import com.github.hexosse.chestpreview.events.PlayerListener;
 import com.github.hexosse.githubupdater.GitHubUpdater;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 
@@ -93,6 +96,18 @@ public class ChestPreview extends BasePlugin
     public boolean isChestPreview(Chest chest)
     {
         return config.chests.contains(chest.getLocation());
+    }
+
+    /**
+     * @param location The location to test
+     * @return true if a chest preview exist arround the location
+     */
+    public boolean isChestPreviewArround(Location location)
+    {
+        // Test si il existe un ChestPreview autour de la location
+        Chest nearbyChest = ChestUtil.getChestNearby(location);
+        // Test si il s'agit d'un chest preview
+        return nearbyChest != null ? isChestPreview(nearbyChest) : false;
     }
 
     /**

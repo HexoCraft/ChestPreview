@@ -26,10 +26,10 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.block.BlockCanBuildEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
@@ -178,18 +178,19 @@ public class ChestListener extends BaseListener<ChestPreview>
     void onInventoryClickEvent(InventoryClickEvent event)
     {
         InventoryHolder holder = event.getInventory().getHolder();
+        Player player = (Player)event.getWhoClicked();
 
         // Test si il s'agit d'un coffre
         if(ChestUtil.isChest(holder) == false && ChestUtil.isDoubleChest(holder) == false) return;
 
         // Test si le Chest est un ChestPreview
-        if(ChestUtil.isChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(holder)) == false)
+        if(ChestUtil.isChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(holder), player) == false)
             return;
-        if(ChestUtil.isDoubleChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(ChestUtil.getDoubleChest(holder).getLeftSide())) == false)
+        if(ChestUtil.isDoubleChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(ChestUtil.getDoubleChest(holder).getLeftSide()), player) == false)
             return;
 
         // Test si le joueur à la permission de détruire le coffre
-        if(!Permissions.has(event.getWhoClicked(), Permissions.ADMIN))
+        if(!Permissions.has(player, Permissions.ADMIN))
             event.setCancelled(true);
     }
 

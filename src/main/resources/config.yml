@@ -15,12 +15,61 @@ plugin:
 
 # *-------------- Messages configuration -----------------*
 # You can use the default messages provided or translate as you whish.
-messages: messages_fr.yml
+messages: messages.yml
 
 
 # *-------------- Chest location -----------------*
 # List all the chest location.
 chest.list: []
+
+
+# *-------------- Worlds Chest Preview -----------------*
+# all the chest present in the worlds listed below will be considered
+# as a chest preview.
+# Doing this your players won't be able to use any chest.
+#worlds:
+#   list :
+#   - world
+#   - world_nether
+#   - world_the end
+worlds:
+  list : []
+# all the chest present in the worlds listed below will be considered
+# as a chest preview for all player in game mode CREATIVE.
+#creativeWorlds:
+#   list :
+#   - world
+#   - world_nether
+#   - world_the end
+creativeWorlds:
+  list : []
+# all the chest present in the worlds listed below will be considered
+# as a chest preview for all player in game mode SURVIVAL.
+#survivalWorlds:
+#   list :
+#   - world
+#   - world_nether
+#   - world_the end
+survivalWorlds:
+  list : []
+# all the chest present in the worlds listed below will be considered
+# as a chest preview for all player in game mode ADVENTURE.
+#adventureWorlds:
+#   list :
+#   - world
+#   - world_nether
+#   - world_the end
+adventureWorlds:
+  list : []
+# all the chest present in the worlds listed below will be considered
+# as a chest preview for all player in game mode SPECTATOR.
+#spectatorWorlds:
+#   list :
+#   - world
+#   - world_nether
+#   - world_the end
+spectatorWorlds:
+  list : []
 
 
 ############################################################

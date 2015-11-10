@@ -95,7 +95,35 @@ public class ChestPreview extends BasePlugin
      */
     public boolean isChestPreview(Chest chest)
     {
-        return config.chests.contains(chest.getLocation());
+        String worldChest = chest.getWorld().getName();
+
+        if(config.worlds.contains(worldChest))              return true;
+        if(config.chests.contains(chest.getLocation()))     return true;
+
+        return false;
+    }
+
+    /**
+     * @param chest The chest to test
+     * @return true if the chest is a chest preview
+     */
+    public boolean isChestPreview(Chest chest, Player player)
+    {
+        if(isChestPreview(chest))
+            return true;
+
+        String worldChest = chest.getWorld().getName();
+
+        if(player.getGameMode()==GameMode.CREATIVE && config.creativeWorlds.contains(worldChest))
+            return true;
+        if(player.getGameMode()==GameMode.SURVIVAL && config.survivalWorlds.contains(worldChest))
+            return true;
+        if(player.getGameMode()==GameMode.ADVENTURE && config.adventureWorlds.contains(worldChest))
+            return true;
+        if(player.getGameMode()==GameMode.SPECTATOR && config.spectatorWorlds.contains(worldChest))
+            return true;
+
+        return false;
     }
 
     /**

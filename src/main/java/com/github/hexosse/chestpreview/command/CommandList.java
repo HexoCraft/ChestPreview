@@ -18,7 +18,6 @@ package com.github.hexosse.chestpreview.command;
 
 import com.github.hexosse.baseplugin.command.BaseCommand;
 import com.github.hexosse.baseplugin.utils.LocationUtil;
-import com.github.hexosse.baseplugin.utils.NumberUtil;
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
 import org.bukkit.ChatColor;

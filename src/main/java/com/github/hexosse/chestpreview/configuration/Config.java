@@ -21,6 +21,7 @@ import com.github.hexosse.baseplugin.config.Location.LocationList;
 import com.github.hexosse.chestpreview.ChestPreview;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * This file is part of ChestPreview
@@ -57,6 +58,18 @@ public class Config extends BaseConfig<ChestPreview>
     /* Chest */
     @ConfigOptions(path = "chest.list")
     public LocationList chests = new LocationList();
+
+    /* Worlds */
+    @ConfigOptions(path = "worlds.list")
+    public ArrayList<String> worlds = new ArrayList<String>();
+    @ConfigOptions(path = "creativeWorlds.list")
+    public ArrayList<String> creativeWorlds = new ArrayList<String>();
+    @ConfigOptions(path = "survivalWorlds.list")
+    public ArrayList<String> survivalWorlds = new ArrayList<String>();
+    @ConfigOptions(path = "adventureWorlds.list")
+    public ArrayList<String> adventureWorlds = new ArrayList<String>();
+    @ConfigOptions(path = "spectatorWorlds.list")
+    public ArrayList<String> spectatorWorlds = new ArrayList<String>();
 
 
     public Config(ChestPreview plugin, File dataFolder, String filename)

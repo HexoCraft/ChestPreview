@@ -12,12 +12,9 @@ softdepend: []
 commands:
   ChestPreview:
     aliases: [cp]
-    usage: |
-           /ChestPreview help : ChestPreview help
-           /ChestPreview [create] : Next chest will be a chest preview
 
 permissions:
-  ChestPreview.admin: {description: Allows creation of chest preview to admin users, default: op}
+  ChestPreview.admin: {description: Allows creation of chest preview to admin users, default: false}
   ChestPreview.*:
     default: op
     children:

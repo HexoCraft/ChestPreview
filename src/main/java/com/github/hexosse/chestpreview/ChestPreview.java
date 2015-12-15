@@ -105,6 +105,7 @@ public class ChestPreview extends BasePlugin
 
     /**
      * @param chest The chest to test
+     * @param player The player to test
      * @return true if the chest is a chest preview
      */
     public boolean isChestPreview(Chest chest, Player player)

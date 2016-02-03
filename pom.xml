@@ -39,6 +39,14 @@
     </licenses>
 
 
+    <!-- scm -->
+    <scm>
+        <connection>scm:git:git://github.com/hexosse/ChestPreview.git</connection>
+        <developerConnection>scm:git:git@github.com:hexosse/ChestPreview.git</developerConnection>
+        <url>https://github.com/hexosse/ChestPreview</url>
+    </scm>
+
+
     <!-- Propriétés du projet -->
     <properties>
         <plugin.name>${project.name}</plugin.name>
@@ -151,14 +159,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>2.6.1</version>
+                <version>3.0.0</version>
             </plugin>
 
             <!-- maven-compiler-plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.3</version>
+                <version>3.5</version>
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
@@ -200,7 +208,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.4.1</version>
+                <version>2.4.3</version>
                 <executions>
                     <execution>
                         <phase>package</phase>

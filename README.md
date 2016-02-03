@@ -1,4 +1,4 @@
-# ChestPreview [![Build Status](https://drone.io/github.com/hexosse/ChestPreview/status.png)](https://drone.io/github.com/hexosse/ChestPreview/latest)
+# ChestPreview [![Build Status](https://drone.io/github.com/hexosse/ChestPreview/status.png)](https://drone.io/github.com/hexosse/ChestPreview/latest) [![Dependency Status](https://www.versioneye.com/user/projects/56b1f31b1c89e100411825bd/badge.svg?style=flat)](https://www.versioneye.com/user/projects/56b1f31b1c89e100411825bd)
 This plugin allow server admin to add preview chest.<br>It can be used to preview kits.
 
 ####Depedency:

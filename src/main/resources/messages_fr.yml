@@ -5,18 +5,17 @@
 #----------- Chat Options ------------------
 chat:
   # Prefix used in the chat
-  prefix: '[ChestPreview]'
+  prefix: '&3[&bChestPreview&3]&r'
 
 
 #----------- Help messages ------------------
 help:
-  HelpCreate: "Autorise la cr\xe9ation d'un ChestPreview!"
-  HelpReload: "Recharge ChestPreview!"
-
-
-#----------- Error messages ------------------
-errors:
-  AccesDenied: "Vous n'avez pas la permission d'effectuer cette action!"
+  HelpCreate:
+  - "Autorise la cr\xe9ation d'un ChestPreview!"
+  HelpList:
+  - "Liste les chest preview exsitants."
+  HelpReload:
+  - "Recharge ChestPreview!"
 
 
 #----------- Messages ------------------

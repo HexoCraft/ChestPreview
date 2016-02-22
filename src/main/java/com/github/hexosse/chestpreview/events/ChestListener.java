@@ -1,7 +1,5 @@
-package com.github.hexosse.chestpreview.events;
-
 /*
- * Copyright 2015 hexosse
+ * Copyright 2016 hexosse
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,12 +14,14 @@ package com.github.hexosse.chestpreview.events;
  *    limitations under the License.
  */
 
-import com.github.hexosse.baseplugin.event.BaseListener;
-import com.github.hexosse.baseplugin.utils.LocationUtil;
-import com.github.hexosse.baseplugin.utils.block.ChestUtil;
+package com.github.hexosse.chestpreview.events;
+
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
-import org.bukkit.ChatColor;
+import com.github.hexosse.pluginframework.pluginapi.PluginListener;
+import com.github.hexosse.pluginframework.pluginapi.message.Message;
+import com.github.hexosse.pluginframework.utilapi.ChestUtil;
+import com.github.hexosse.pluginframework.utilapi.LocationUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -44,7 +44,7 @@ import java.util.Iterator;
  *
  * @author <b>hexosse</b> (<a href="https://github.comp/hexosse">hexosse on GitHub</a>))
  */
-public class ChestListener extends BaseListener<ChestPreview>
+public class ChestListener extends PluginListener<ChestPreview>
 {
     /**
      * @param plugin The plugin that this object belong to.
@@ -100,7 +100,10 @@ public class ChestListener extends BaseListener<ChestPreview>
             plugin.addChestPreview(chest);
 
             // Message
-            pluginLogger.help(ChatColor.AQUA + plugin.messages.chatPrefix + ChatColor.WHITE + " " +  plugin.messages.created + " " +  LocationUtil.locationToString(chest.getLocation()), event.getPlayer());
+			Message message = new Message();
+			message.setPrefix(plugin.messages.chatPrefix);
+			message.add(plugin.messages.created + " " +  LocationUtil.locationToString(chest.getLocation()));
+			messageManager.send(event.getPlayer(), message);
 
             // Fin de la création
             plugin.setActive(false,event.getPlayer());
@@ -129,8 +132,11 @@ public class ChestListener extends BaseListener<ChestPreview>
         // Si oui, supprimer de la liste des coffres
         plugin.removeChestPreview(chest);
 
-        // Message
-        pluginLogger.help(ChatColor.AQUA + plugin.messages.chatPrefix + ChatColor.WHITE + " " +  plugin.messages.destroyed + " " +  LocationUtil.locationToString(chest.getLocation()), event.getPlayer());
+		// Message
+		Message message = new Message();
+		message.setPrefix(plugin.messages.chatPrefix);
+		message.add(plugin.messages.destroyed + " " +  LocationUtil.locationToString(chest.getLocation()));
+		messageManager.send(event.getPlayer(), message);
     }
 
 

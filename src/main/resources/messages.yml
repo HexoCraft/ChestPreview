@@ -5,18 +5,20 @@
 #----------- Chat Options ------------------
 chat:
   # Prefix used in the chat
-  prefix: '[ChestPreview]'
+  prefix: '&3[&bChestPreview&3]&r'
 
 
 #----------- Help messages ------------------
 help:
-  HelpCreate: Enable chest preview creation!
-  HelpReload: Reload ChestPreview!
-
-
-#----------- Error messages ------------------
-errors:
-  AccesDenied: You don't have permission to do that!
+  HelpCreate:
+  - Enable chest preview creation!
+  - use /chestpreview create, then place your chest
+  - or right click an existing chest with a chest
+  - in your hand.
+  HelpList:
+  - List all chest preview.
+  HelpReload:
+  - Reload ChestPreview!
 
 
 #----------- Messages ------------------

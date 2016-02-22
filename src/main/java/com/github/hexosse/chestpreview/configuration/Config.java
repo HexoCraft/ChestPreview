@@ -1,7 +1,5 @@
-package com.github.hexosse.chestpreview.configuration;
-
 /*
- * Copyright 2015 hexosse
+ * Copyright 2016 hexosse
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,9 +14,11 @@ package com.github.hexosse.chestpreview.configuration;
  *    limitations under the License.
  */
 
-import com.github.hexosse.baseplugin.config.BaseConfig;
-import com.github.hexosse.baseplugin.config.Location.LocationList;
+package com.github.hexosse.chestpreview.configuration;
+
 import com.github.hexosse.chestpreview.ChestPreview;
+import com.github.hexosse.pluginframework.pluginapi.config.Location.LocationList;
+import com.github.hexosse.pluginframework.pluginapi.config.PluginConfig;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,18 +29,18 @@ import java.util.ArrayList;
  * @author <b>hexosse</b> (<a href="https://github.com/hexosse">hexosse on GitHub</a>).
  */
 
-@BaseConfig.ConfigHeader(comment = {
+@PluginConfig.ConfigHeader(comment = {
         "############################################################",
         "# | ChestPreview by hexosse                              | #",
         "############################################################"
 })
-@BaseConfig.ConfigFooter(comment = {
+@PluginConfig.ConfigFooter(comment = {
         " ",
         " ",
         "############################################################"
 })
 
-public class Config extends BaseConfig<ChestPreview>
+public class Config extends PluginConfig<ChestPreview>
 {
     /* Plugin */
     @ConfigComment(path = "plugin")

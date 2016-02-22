@@ -1,7 +1,5 @@
-package com.github.hexosse.chestpreview.command;
-
 /*
- * Copyright 2015 hexosse
+ * Copyright 2016 hexosse
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,42 +14,45 @@ package com.github.hexosse.chestpreview.command;
  *    limitations under the License.
  */
 
-import com.github.hexosse.baseplugin.command.BaseCommand;
+package com.github.hexosse.chestpreview.command;
+
 import com.github.hexosse.chestpreview.ChestPreview;
 import com.github.hexosse.chestpreview.configuration.Permissions;
-import org.bukkit.ChatColor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
+import com.github.hexosse.pluginframework.pluginapi.PluginCommand;
+import com.github.hexosse.pluginframework.pluginapi.command.CommandInfo;
+import com.google.common.collect.Lists;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * This file is part ChestPreview
  *
  * @author <b>hexosse</b> (<a href="https://github.comp/hexosse">hexosse on GitHub</a>))
  */
-public class CommandCreate extends BaseCommand<ChestPreview>
+public class CpCommandCreate extends PluginCommand<ChestPreview>
 {
     /**
      * @param plugin The plugin that this object belong to.
      */
-    public CommandCreate(ChestPreview plugin)
+    public CpCommandCreate(ChestPreview plugin)
     {
-        super(plugin);
+        super("Create", plugin);
+        this.setAliases(Lists.newArrayList("create", "ls"));
+        this.setDescription(StringUtils.join(plugin.messages.helpCreate,"\n"));
+        this.setPermission(Permissions.ADMIN.toString());
     }
 
     /**
-     * Abstarct metode
+     * Executes the given command, returning its success
+     *
+     * @param commandInfo Info about the command
+     *
+     * @return true if a valid command, otherwise false
      */
     @Override
-    public void execute(CommandSender sender)
+    public boolean onCommand(CommandInfo commandInfo)
     {
-        final Player player = (sender instanceof Player) ? (Player)sender : null;
+        plugin.setActive(true,commandInfo.getPlayer());
 
-        if(!Permissions.has(sender, Permissions.ADMIN))
-        {
-            pluginLogger.help(ChatColor.RED + plugin.messages.AccesDenied, player);
-            return;
-        }
-
-        plugin.setActive(true,player);
+        return true;
     }
 }

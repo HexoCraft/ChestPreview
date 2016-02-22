@@ -1,7 +1,5 @@
-package com.github.hexosse.chestpreview.configuration;
-
 /*
- * Copyright 2015 hexosse
+ * Copyright 2016 hexosse
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -15,6 +13,8 @@ package com.github.hexosse.chestpreview.configuration;
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
+
+package com.github.hexosse.chestpreview.configuration;
 
 import org.bukkit.command.CommandSender;
 

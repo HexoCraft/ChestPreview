@@ -9,10 +9,6 @@ website: www.github.hexosse
 depend: []
 softdepend: []
 
-commands:
-  ChestPreview:
-    aliases: [cp]
-
 permissions:
   ChestPreview.admin: {description: Allows creation of chest preview to admin users, default: false}
   ChestPreview.*:

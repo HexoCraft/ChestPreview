@@ -1,7 +1,5 @@
-package com.github.hexosse.chestpreview.configuration;
-
 /*
- * Copyright 2015 hexosse
+ * Copyright 2016 hexosse
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -16,10 +14,13 @@ package com.github.hexosse.chestpreview.configuration;
  *    limitations under the License.
  */
 
-import com.github.hexosse.baseplugin.config.BaseConfig;
+package com.github.hexosse.chestpreview.configuration;
+
 import com.github.hexosse.chestpreview.ChestPreview;
+import com.github.hexosse.pluginframework.pluginapi.config.PluginConfig;
 
 import java.io.File;
+import java.util.List;
 
 /**
  * This file is part of ChestPreview
@@ -27,18 +28,18 @@ import java.io.File;
  * @author <b>hexosse</b> (<a href="https://github.com/hexosse">hexosse on GitHub</a>).
  */
 
-@BaseConfig.ConfigHeader(comment = {
+@PluginConfig.ConfigHeader(comment = {
         "############################################################",
         "# | ChestPreview by hexosse                              | #",
         "############################################################"
 })
-@BaseConfig.ConfigFooter(comment = {
+@PluginConfig.ConfigFooter(comment = {
         " ",
         " ",
         "############################################################"
 })
 
-public class Messages extends BaseConfig<ChestPreview>
+public class Messages extends PluginConfig<ChestPreview>
 {
     /* Chat */
     @ConfigComment(path = "chat")
@@ -48,14 +49,11 @@ public class Messages extends BaseConfig<ChestPreview>
     /* Help */
     @ConfigComment(path = "help")
     @ConfigOptions(path = "help.HelpCreate")
-    public String helpCreate;
+    public List<String> helpCreate;
+    @ConfigOptions(path = "help.HelpList")
+    public List<String> helpList;
     @ConfigOptions(path = "help.HelpReload")
-    public String helpReload;
-
-    /* Errors */
-    @ConfigComment(path = "errors")
-    @ConfigOptions(path = "errors.AccesDenied")
-    public String AccesDenied;
+    public List<String> helpReload;
 
     /* Messages */
     @ConfigComment(path = "messages")

@@ -17,8 +17,8 @@
 package com.github.hexosse.chestpreview.configuration;
 
 import com.github.hexosse.chestpreview.ChestPreview;
+import com.github.hexosse.pluginframework.pluginapi.config.ConfigFile;
 import com.github.hexosse.pluginframework.pluginapi.config.Location.LocationList;
-import com.github.hexosse.pluginframework.pluginapi.config.PluginConfig;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -29,18 +29,18 @@ import java.util.ArrayList;
  * @author <b>hexosse</b> (<a href="https://github.com/hexosse">hexosse on GitHub</a>).
  */
 
-@PluginConfig.ConfigHeader(comment = {
+@ConfigFile.ConfigHeader(comment = {
         "############################################################",
         "# | ChestPreview by hexosse                              | #",
         "############################################################"
 })
-@PluginConfig.ConfigFooter(comment = {
+@ConfigFile.ConfigFooter(comment = {
         " ",
         " ",
         "############################################################"
 })
 
-public class Config extends PluginConfig<ChestPreview>
+public class Config extends ConfigFile<ChestPreview>
 {
     /* Plugin */
     @ConfigComment(path = "plugin")

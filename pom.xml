@@ -26,7 +26,7 @@
     <version>1.1.6</version>
     <packaging>jar</packaging>
     <description>Create preview chest</description>
-    <url>https://github.com/hexosse/ChestPreview</url>
+    <url>https://github.com/hexocube/ChestPreview</url>
 
 
     <!-- License -->
@@ -41,14 +41,14 @@
 
     <!-- scm -->
     <scm>
-        <url>http://github.com/hexosse/ChestPreview</url>
-        <connection>scm:git:git://github.com/hexosse/ChestPreview.git</connection>
-        <developerConnection>scm:git:git@github.com:hexosse/ChestPreview.git</developerConnection>
+        <url>http://github.com/hexocube/ChestPreview</url>
+        <connection>scm:git:git://github.com/hexocube/ChestPreview.git</connection>
+        <developerConnection>scm:git:git@github.com:hexocube/ChestPreview.git</developerConnection>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/hexosse/ChestPreview/issues</url>
+        <url>https://github.com/hexocube/ChestPreview/issues</url>
     </issueManagement>
 
     <!-- Propriétés du projet -->

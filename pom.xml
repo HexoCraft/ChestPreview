@@ -41,10 +41,11 @@
 
     <!-- scm -->
     <scm>
+        <url>http://github.com/hexosse/ChestPreview</url>
         <connection>scm:git:git://github.com/hexosse/ChestPreview.git</connection>
         <developerConnection>scm:git:git@github.com:hexosse/ChestPreview.git</developerConnection>
-        <url>git@github.com:hexosse/ChestPreview.git</url>
     </scm>
+
     <issueManagement>
         <system>GitHub</system>
         <url>https://github.com/hexosse/ChestPreview/issues</url>

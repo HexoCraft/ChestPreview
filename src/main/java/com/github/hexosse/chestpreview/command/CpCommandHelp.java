@@ -33,7 +33,6 @@ public class CpCommandHelp extends CommandHelp<ChestPreview>
     public CpCommandHelp(ChestPreview plugin)
     {
         super(plugin);
-        this.removeArgument("page");
         this.setPermission(Permissions.ADMIN.toString());
     }
 }

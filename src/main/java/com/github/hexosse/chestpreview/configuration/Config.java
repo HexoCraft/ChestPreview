@@ -44,32 +44,22 @@ public class Config extends ConfigFile<ChestPreview>
 {
     /* Plugin */
     @ConfigComment(path = "plugin")
-    @ConfigOptions(path = "plugin.useMetrics")
-    public boolean useMetrics = (boolean) true;
-    @ConfigOptions(path = "plugin.useUpdater")
-    public boolean useUpdater = (boolean) true;
-    @ConfigOptions(path = "plugin.downloadUpdate")
-    public boolean downloadUpdate = (boolean) true;
+    @ConfigOptions(path = "plugin.useMetrics")              public boolean useMetrics = (boolean) true;
+    @ConfigOptions(path = "plugin.useUpdater")              public boolean useUpdater = (boolean) true;
+    @ConfigOptions(path = "plugin.downloadUpdate")          public boolean downloadUpdate = (boolean) true;
 
     /* Message */
-    @ConfigOptions(path = "messages")
-    public String messages = "messages.yml";
+    @ConfigOptions(path = "messages")                       public String messages = "messages.yml";
 
     /* Chest */
-    @ConfigOptions(path = "chest.list")
-    public LocationList chests = new LocationList();
+    @ConfigOptions(path = "chest.list")                     public LocationList chests = new LocationList();
 
     /* Worlds */
-    @ConfigOptions(path = "worlds.list")
-    public ArrayList<String> worlds = new ArrayList<String>();
-    @ConfigOptions(path = "creativeWorlds.list")
-    public ArrayList<String> creativeWorlds = new ArrayList<String>();
-    @ConfigOptions(path = "survivalWorlds.list")
-    public ArrayList<String> survivalWorlds = new ArrayList<String>();
-    @ConfigOptions(path = "adventureWorlds.list")
-    public ArrayList<String> adventureWorlds = new ArrayList<String>();
-    @ConfigOptions(path = "spectatorWorlds.list")
-    public ArrayList<String> spectatorWorlds = new ArrayList<String>();
+    @ConfigOptions(path = "worlds.list")                    public ArrayList<String> worlds = new ArrayList<String>();
+    @ConfigOptions(path = "creativeWorlds.list")            public ArrayList<String> creativeWorlds = new ArrayList<String>();
+    @ConfigOptions(path = "survivalWorlds.list")            public ArrayList<String> survivalWorlds = new ArrayList<String>();
+    @ConfigOptions(path = "adventureWorlds.list")           public ArrayList<String> adventureWorlds = new ArrayList<String>();
+    @ConfigOptions(path = "spectatorWorlds.list")           public ArrayList<String> spectatorWorlds = new ArrayList<String>();
 
 
     public Config(ChestPreview plugin, File dataFolder, String filename)

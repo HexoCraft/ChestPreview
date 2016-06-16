@@ -23,7 +23,7 @@
     <groupId>com.github.hexosse</groupId>
     <artifactId>ChestPreview</artifactId>
     <name>ChestPreview</name>
-    <version>1.1.6</version>
+    <version>1.1.7</version>
     <packaging>jar</packaging>
     <description>Create preview chest</description>
     <url>https://github.com/hexocube/ChestPreview</url>
@@ -122,7 +122,7 @@
         <dependency>
             <groupId>com.github.hexosse</groupId>
             <artifactId>pluginframework</artifactId>
-            <version>0.5.0</version>
+            <version>0.5.1</version>
             <scope>compile</scope>
         </dependency>
         <!--hexosse GitHubUpdater-->

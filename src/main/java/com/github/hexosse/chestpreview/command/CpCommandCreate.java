@@ -36,7 +36,7 @@ public class CpCommandCreate extends PluginCommand<ChestPreview>
     public CpCommandCreate(ChestPreview plugin)
     {
         super("Create", plugin);
-        this.setAliases(Lists.newArrayList("create", "ls"));
+        this.setAliases(Lists.newArrayList("create"));
         this.setDescription(StringUtils.join(plugin.messages.helpCreate,"\n"));
         this.setPermission(Permissions.ADMIN.toString());
     }

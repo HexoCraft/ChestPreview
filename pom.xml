@@ -23,7 +23,7 @@
     <groupId>com.github.hexosse</groupId>
     <artifactId>ChestPreview</artifactId>
     <name>ChestPreview</name>
-    <version>1.1.8</version>
+    <version>1.1.9</version>
     <packaging>jar</packaging>
     <description>Create preview chest</description>
     <url>https://github.com/hexocube/ChestPreview</url>

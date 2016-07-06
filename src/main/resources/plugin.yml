@@ -7,7 +7,7 @@ author: hexosse
 website: www.github.hexosse
 
 depend: []
-softdepend: []
+softdepend: [Multiverse-Core]
 
 permissions:
   ChestPreview.admin: {description: Allows creation of chest preview to admin users, default: false}

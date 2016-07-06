@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" build-on-make="true" name="ChestPreview:jar">
-    <output-path>$PROJECT_DIR$/../../ServerTest/plugins</output-path>
+    <output-path>D:/CloudStation/Minecraft/Developpement/Serveurs/Tests/plugins</output-path>
     <root id="archive" name="ChestPreview.jar">
       <element id="module-output" name="ChestPreview" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/hexosse/GitHubUpdater/1.0.5/GitHubUpdater-1.0.5.jar" path-in-jar="/" />

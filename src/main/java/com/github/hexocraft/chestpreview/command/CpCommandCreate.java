@@ -14,32 +14,32 @@
  *    limitations under the License.
  */
 
-package com.github.hexosse.chestpreview.command;
+package com.github.hexocraft.chestpreview.command;
 
-import com.github.hexosse.chestpreview.ChestPreview;
-import com.github.hexosse.pluginframework.pluginapi.PluginCommand;
-import com.github.hexosse.pluginframework.pluginapi.command.CommandInfo;
+import com.github.hexocraft.chestpreview.ChestPreviewApi;
+import com.github.hexocraft.chestpreview.ChestPreviewPlugin;
+import com.github.hexocraft.chestpreview.configuration.Permissions;
+import com.github.hexocraftapi.command.Command;
+import com.github.hexocraftapi.command.CommandInfo;
 import com.google.common.collect.Lists;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * This file is part ChestPreview
  *
  * @author <b>hexosse</b> (<a href="https://github.comp/hexosse">hexosse on GitHub</a>))
  */
-public class CpCommands extends PluginCommand<ChestPreview>
+public class CpCommandCreate extends Command<ChestPreviewPlugin>
 {
     /**
      * @param plugin The plugin that this object belong to.
      */
-    public CpCommands(ChestPreview plugin)
+    public CpCommandCreate(ChestPreviewPlugin plugin)
     {
-        super("ChestPreview", plugin);
-        this.setAliases(Lists.newArrayList("cp"));
-
-        this.addSubCommand(new CpCommandHelp(plugin));
-        this.addSubCommand(new CpCommandCreate(plugin));
-        this.addSubCommand(new CpCommandList(plugin));
-        this.addSubCommand(new CpCommandReload(plugin));
+        super("create", plugin);
+        this.setAliases(Lists.newArrayList("c"));
+        this.setDescription(StringUtils.join(plugin.messages.cCreate,"\n"));
+        this.setPermission(Permissions.ADMIN.toString());
     }
 
     /**
@@ -52,7 +52,7 @@ public class CpCommands extends PluginCommand<ChestPreview>
     @Override
     public boolean onCommand(CommandInfo commandInfo)
     {
-        plugin.getServer().dispatchCommand(commandInfo.getSender(), "ChestPreview help");
+        ChestPreviewApi.setActive(true,commandInfo.getPlayer());
 
         return true;
     }

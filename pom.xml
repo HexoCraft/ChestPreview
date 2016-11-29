@@ -20,13 +20,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.hexosse</groupId>
-    <artifactId>ChestPreview</artifactId>
+    <groupId>com.github.hexocraft</groupId>
+    <artifactId>chestpreview</artifactId>
     <name>ChestPreview</name>
-    <version>1.1.8</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
     <description>Create preview chest</description>
-    <url>https://github.com/hexocube/ChestPreview</url>
+    <url>https://github.com/hexocraft/ChestPreview</url>
 
 
     <!-- License -->
@@ -41,14 +41,14 @@
 
     <!-- scm -->
     <scm>
-        <url>http://github.com/hexocube/ChestPreview</url>
-        <connection>scm:git:git://github.com/hexocube/ChestPreview.git</connection>
-        <developerConnection>scm:git:git@github.com:hexocube/ChestPreview.git</developerConnection>
+        <url>http://github.com/hexocraft/ChestPreview</url>
+        <connection>scm:git:git://github.com/hexocraft/ChestPreview.git</connection>
+        <developerConnection>scm:git:git@github.com:hexocraft/ChestPreview.git</developerConnection>
     </scm>
 
     <issueManagement>
         <system>GitHub</system>
-        <url>https://github.com/hexocube/ChestPreview/issues</url>
+        <url>https://github.com/hexocraft/ChestPreview/issues</url>
     </issueManagement>
 
     <!-- Propriétés du projet -->
@@ -56,10 +56,9 @@
         <plugin.name>${project.name}</plugin.name>
         <plugin.version>${project.version}</plugin.version>
         <jdk.version>1.7</jdk.version>
-        <spigot.version>1.10-R0.1-SNAPSHOT</spigot.version>
+        <bukkit.version>1.11-R0.1-SNAPSHOT</bukkit.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <github.global.server>github</github.global.server>
-        <BUILD_NUMBER>local-${maven.build.timestamp}</BUILD_NUMBER>
     </properties>
 
 
@@ -104,32 +103,39 @@
 
     <!-- Mettre ici la liste des dépendances du projet-->
     <dependencies>
-        <!--Spigot-API-->
-        <dependency>
+        <!-- Spigot-API -->
+        <!-- <dependency>
+             <groupId>org.spigotmc</groupId>
+             <artifactId>spigot-api</artifactId>
+             <version>${bukkit.version}</version>
+             <scope>provided</scope>
+         </dependency> -->
+        <!-- Spigot -->
+        <!-- <dependency>
             <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>${spigot.version}</version>
+            <artifactId>spigot</artifactId>
+            <version>${bukkit.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <!-- Bukkit API -->
-        <!--<dependency>
+        </dependency> -->
+        <!-- bukkit -->
+        <dependency>
             <groupId>org.bukkit</groupId>
             <artifactId>bukkit</artifactId>
-            <version>${spigot.version}</version>
+            <version>${bukkit.version}</version>
             <scope>provided</scope>
-        </dependency>-->
-        <!-- hexosse PluginFramework -->
-        <dependency>
-            <groupId>com.github.hexosse</groupId>
-            <artifactId>pluginframework</artifactId>
-            <version>0.5.1</version>
-            <scope>compile</scope>
         </dependency>
-        <!--hexosse GitHubUpdater-->
+        <!-- Craftbukkit -->
+        <!-- <dependency>
+            <groupId>org.bukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>${bukkit.version}</version>
+            <scope>provided</scope>
+        </dependency> -->
+        <!-- HexoCraftApi Plugin -->
         <dependency>
-            <groupId>com.github.hexosse</groupId>
-            <artifactId>GitHubUpdater</artifactId>
-            <version>1.0.5</version>
+            <groupId>com.github.hexocraftapi</groupId>
+            <artifactId>plugin</artifactId>
+            <version>[1.0.0, )</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
@@ -137,8 +143,9 @@
 
     <!-- Options de build -->
     <build>
+        <defaultGoal>clean install</defaultGoal>
         <sourceDirectory>src/main/java</sourceDirectory>
-        <finalName>${plugin.name}-${plugin.version}</finalName>
+        <finalName>${project.name}-${project.version}</finalName>
 
         <!-- Ressources -->
         <resources>
@@ -167,43 +174,13 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.5.1</version>
+                <version>3.6.0</version>
                 <configuration>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
                     <optimize>true</optimize>
                 </configuration>
             </plugin>
-
-            <!-- maven-source-plugin -->
-            <!-- <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>attach-sources</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin> -->
-
-            <!-- maven-javadoc-plugin -->
-            <!-- <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.3</version>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin> -->
 
             <!-- maven-shade-plugin -->
             <plugin>
@@ -219,20 +196,12 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>com.github.hexosse.pluginframework</pattern>
-                                    <shadedPattern>com.github.hexosse.${project.artifactId}.framework</shadedPattern>
-                                </relocation>
-                                <relocation>
-                                    <pattern>com.github.hexosse.githubupdater</pattern>
-                                    <shadedPattern>com.github.hexosse.${project.artifactId}.updater</shadedPattern>
+                                    <pattern>com.github.hexocraftapi</pattern>
+                                    <shadedPattern>${project.groupId}.${project.artifactId}.api</shadedPattern>
                                 </relocation>
                             </relocations>
-                            <!-- remove unnecessary stuff -->
-                            <minimizeJar>true</minimizeJar>
-                            <!-- utterly useless artifact from shade 2.x -->
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <!-- Le fichier jar d'origine est renommé en original-XXXX.jar -->
-                            <shadedArtifactAttached>false</shadedArtifactAttached>
+                            <minimizeJar>false</minimizeJar>
+                            <createDependencyReducedPom>true</createDependencyReducedPom>
                         </configuration>
                     </execution>
                 </executions>
@@ -242,7 +211,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>3.0.1</version>
+                <version>3.0.2</version>
                 <configuration>
                     <archive>
                         <addMavenDescriptor>false</addMavenDescriptor>
@@ -297,6 +266,8 @@
                     <repositoryName>maven-repo</repositoryName>
                     <!-- github username -->
                     <repositoryOwner>hexosse</repositoryOwner>
+                    <!-- github OAuth Token -->
+                    <!-- <oauth2Token>${env.GITHUB_OAUTH_TOKEN}</oauth2Token> -->
                 </configuration>
                 <executions>
                     <execution>

@@ -14,17 +14,16 @@
  *    limitations under the License.
  */
 
-package com.github.hexosse.chestpreview.events;
+package com.github.hexocraft.chestpreview.listeners;
 
-import com.github.hexosse.chestpreview.ChestPreview;
-import com.github.hexosse.pluginframework.pluginapi.PluginListener;
-import com.github.hexosse.pluginframework.pluginapi.message.Message;
-import com.github.hexosse.pluginframework.utilapi.ChestUtil;
-import com.github.hexosse.pluginframework.utilapi.LocationUtil;
+import com.github.hexocraft.chestpreview.ChestPreviewApi;
+import com.github.hexocraftapi.util.ChestUtil;
+import com.github.hexocraftapi.util.PlayerUtil;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -33,16 +32,8 @@ import org.bukkit.event.player.PlayerInteractEvent;
  *
  * @author <b>hexosse</b> (<a href="https://github.com/hexosse">hexosse on GitHub</a>).
  */
-public class PlayerListener extends PluginListener<ChestPreview>
+public class PlayerListener implements Listener
 {
-    /**
-     * @param plugin The plugin that this object belong to.
-     */
-    public PlayerListener(ChestPreview plugin)
-    {
-        super(plugin);
-    }
-
     /**
      * @param event PlayerInteractEvent
      */
@@ -52,28 +43,25 @@ public class PlayerListener extends PluginListener<ChestPreview>
         final Player player = event.getPlayer();
 
         // Test si la création est activée
-        if(plugin.isActive() == false)
+        if(ChestPreviewApi.isActive() == false)
             return;
 
         //
         if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
         {
+            boolean onChest = ChestUtil.isChest(event.getClickedBlock());
+            boolean withChest = PlayerUtil.getItemInHand(player)!=null && ChestUtil.isChest(PlayerUtil.getItemInHand(player));
+
             // L'utilisateur clique sur un coffre avec un coffre
-            if(ChestUtil.isChest(event.getClickedBlock()) && player.getItemInHand()!=null && ChestUtil.isChest(player.getItemInHand()))
+            if(withChest && onChest)
             {
                 Chest chest = ChestUtil.getChest(event.getClickedBlock());
+                Chest nearbyChest = ChestUtil.getChestNearby(chest.getLocation());
 
-                // Sauvegarde du chestpreview
-                plugin.addChestPreview(chest);
-
-                // Message
-                Message message = new Message();
-                message.setPrefix(plugin.messages.chatPrefix);
-                message.add(plugin.messages.created + " " +  LocationUtil.locationToString(chest.getLocation()));
-                messageManager.send(event.getPlayer(), message);
-
-                // Fin de la création
-                plugin.setActive(false, event.getPlayer());
+                // Création d'un chest preview
+                ChestPreviewApi.create(chest, event.getPlayer());
+                ChestPreviewApi.create(nearbyChest, event.getPlayer());
+                ChestPreviewApi.setActive(false);
             }
         }
     }

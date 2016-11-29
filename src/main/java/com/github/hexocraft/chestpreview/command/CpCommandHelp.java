@@ -14,25 +14,29 @@
  *    limitations under the License.
  */
 
-package com.github.hexosse.chestpreview.command;
+package com.github.hexocraft.chestpreview.command;
 
-import com.github.hexosse.chestpreview.ChestPreview;
-import com.github.hexosse.chestpreview.configuration.Permissions;
-import com.github.hexosse.pluginframework.pluginapi.command.predifined.CommandHelp;
+import com.github.hexocraft.chestpreview.ChestPreviewPlugin;
+import com.github.hexocraft.chestpreview.configuration.Permissions;
+import com.github.hexocraftapi.command.predifined.CommandHelp;
+import org.apache.commons.lang.StringUtils;
 
 /**
  * This file is part ChestPreview
  *
  * @author <b>hexosse</b> (<a href="https://github.comp/hexosse">hexosse on GitHub</a>))
  */
-public class CpCommandHelp extends CommandHelp<ChestPreview>
+public class CpCommandHelp extends CommandHelp<ChestPreviewPlugin>
 {
     /**
      * @param plugin The plugin that this object belong to.
      */
-    public CpCommandHelp(ChestPreview plugin)
+    public CpCommandHelp(ChestPreviewPlugin plugin)
     {
         super(plugin);
+        this.setDescription(StringUtils.join(plugin.messages.cHelp,"\n"));
         this.setPermission(Permissions.ADMIN.toString());
+        this.setDisplayInlineDescription(true);
+        this.removeArgument("page");
     }
 }

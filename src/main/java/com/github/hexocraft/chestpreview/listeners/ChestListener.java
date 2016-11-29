@@ -14,21 +14,20 @@
  *    limitations under the License.
  */
 
-package com.github.hexosse.chestpreview.events;
+package com.github.hexocraft.chestpreview.listeners;
 
-import com.github.hexosse.chestpreview.ChestPreview;
-import com.github.hexosse.chestpreview.configuration.Permissions;
-import com.github.hexosse.pluginframework.pluginapi.PluginListener;
-import com.github.hexosse.pluginframework.pluginapi.message.Message;
-import com.github.hexosse.pluginframework.utilapi.ChestUtil;
-import com.github.hexosse.pluginframework.utilapi.LocationUtil;
+import com.github.hexocraft.chestpreview.ChestPreviewApi;
+import com.github.hexocraft.chestpreview.configuration.Permissions;
+import com.github.hexocraftapi.util.ChestUtil;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Chest;
+import org.bukkit.block.DoubleChest;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockExplodeEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -44,17 +43,8 @@ import java.util.Iterator;
  *
  * @author <b>hexosse</b> (<a href="https://github.comp/hexosse">hexosse on GitHub</a>))
  */
-public class ChestListener extends PluginListener<ChestPreview>
+public class ChestListener implements Listener
 {
-    /**
-     * @param plugin The plugin that this object belong to.
-     */
-    public ChestListener(ChestPreview plugin)
-    {
-        super(plugin);
-    }
-
-
     @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
     public void onBlockPlace(BlockPlaceEvent event)
     {
@@ -64,49 +54,43 @@ public class ChestListener extends PluginListener<ChestPreview>
 
         if(type == Material.HOPPER)
         {
-            if (plugin.isChestPreviewArround(location)) {
+            if (ChestPreviewApi.isChestPreviewArround(location)) {
                 event.setCancelled(true);
+                return;
             }
         }
         else if(type == Material.RAILS || type == Material.POWERED_RAIL || type == Material.DETECTOR_RAIL || type == Material.ACTIVATOR_RAIL)
         {
-            if (plugin.isChestPreviewArround(location)) {
+            if (ChestPreviewApi.isChestPreviewArround(location)) {
                 event.setCancelled(true);
+                return;
             }
         }
         else if(ChestUtil.isChest(block))
         {
             // Récupère le Chest
-            Chest chest = ChestUtil.getChest(event.getBlockPlaced());
+            Chest chest = (Chest)event.getBlockPlaced().getState();
 
             // Test si on cherche à mettre un coffre à coté d'un autre coffre
             Chest nearbyChest = ChestUtil.getChestNearby(chest.getLocation());
 
             // Test si il s'agit d'un chest preview
-            boolean isChestPreview = nearbyChest != null ? plugin.isChestPreview(nearbyChest) : false;
+            boolean isChestPreview = nearbyChest != null ? ChestPreviewApi.isChestPreview(nearbyChest) : false;
 
             // Test si la création du chest est autorisée
-            if(nearbyChest != null && !(isChestPreview == plugin.isActive()))
+            if(nearbyChest != null && !(isChestPreview == ChestPreviewApi.isActive()))
             {
                 event.setCancelled(true);
                 return;
             }
 
             // Test si la création est activée
-            if(plugin.isActive() == false)
+            if(ChestPreviewApi.isActive() == false)
                 return;
 
-            // Sauvegarde du chestpreview
-            plugin.addChestPreview(chest);
-
-            // Message
-			Message message = new Message();
-			message.setPrefix(plugin.messages.chatPrefix);
-			message.add(plugin.messages.created + " " +  LocationUtil.locationToString(chest.getLocation()));
-			messageManager.send(event.getPlayer(), message);
-
-            // Fin de la création
-            plugin.setActive(false,event.getPlayer());
+            // Création d'un chest preview
+            ChestPreviewApi.create(chest, event.getPlayer());
+            ChestPreviewApi.setActive(false);
         }
     }
 
@@ -121,22 +105,19 @@ public class ChestListener extends PluginListener<ChestPreview>
         Chest chest = ChestUtil.getChest(event.getBlock());
         if(chest == null) return;
 
-        // Test si le Chest est un ChestPreview
-        if(plugin.isChestPreview(chest) == false)
+        // Test si le Chest est un chest preview
+        if(ChestPreviewApi.isChestPreview(chest) == false)
             return;
 
         // Test si le joueur à la permission de détruire le coffre
         if(!Permissions.has(event.getPlayer(), Permissions.ADMIN))
+        {
             event.setCancelled(true);
+            return;
+        }
 
         // Si oui, supprimer de la liste des coffres
-        plugin.removeChestPreview(chest);
-
-		// Message
-		Message message = new Message();
-		message.setPrefix(plugin.messages.chatPrefix);
-		message.add(plugin.messages.destroyed + " " +  LocationUtil.locationToString(chest.getLocation()));
-		messageManager.send(event.getPlayer(), message);
+        ChestPreviewApi.remove(chest, event.getPlayer());
     }
 
 
@@ -157,17 +138,31 @@ public class ChestListener extends PluginListener<ChestPreview>
 
         // Récupère le Chest
         Chest chestSource = ChestUtil.getChest(holderSource);
+        DoubleChest doubleChestSource = ChestUtil.getDoubleChest(holderSource);
         Chest chestDestination = ChestUtil.getChest(holderDestination);
+        DoubleChest doubleChestDestination = ChestUtil.getDoubleChest(holderDestination);
+
+
 
         // Empêche un item de sortir du coffre
-        if(chestSource != null && plugin.isChestPreview(chestSource) == true)
+        if(chestSource != null && ChestPreviewApi.isChestPreview(chestSource) == true)
+        {
+            event.setCancelled(true);
+            return;
+        }
+        if(doubleChestSource != null && ChestPreviewApi.isChestPreview(ChestUtil.getChest(doubleChestSource.getLeftSide())) == true)
         {
             event.setCancelled(true);
             return;
         }
 
         // Empêche un item de rentrer du coffre
-        if(chestDestination != null && plugin.isChestPreview(chestDestination) == true)
+        if(chestDestination != null && ChestPreviewApi.isChestPreview(chestDestination) == true)
+        {
+            event.setCancelled(true);
+            return;
+        }
+        if(doubleChestDestination != null && ChestPreviewApi.isChestPreview(ChestUtil.getChest(doubleChestDestination.getLeftSide())) == true)
         {
             event.setCancelled(true);
             return;
@@ -186,13 +181,16 @@ public class ChestListener extends PluginListener<ChestPreview>
         InventoryHolder holder = event.getInventory().getHolder();
         Player player = (Player)event.getWhoClicked();
 
-        // Test si il s'agit d'un coffre
-        if(ChestUtil.isChest(holder) == false && ChestUtil.isDoubleChest(holder) == false) return;
+        boolean isChest = ChestUtil.isChest(holder);
+        boolean isDoubleChest = ChestUtil.isDoubleChest(holder);
 
-        // Test si le Chest est un ChestPreview
-        if(ChestUtil.isChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(holder), player) == false)
+        // Test si il s'agit d'un coffre
+        if(!isChest && !isDoubleChest) return;
+
+        // Test si le Chest est un chest preview
+        if(isChest && ChestPreviewApi.isChestPreview(ChestUtil.getChest(holder), player) == false)
             return;
-        if(ChestUtil.isDoubleChest(holder) == true && plugin.isChestPreview(ChestUtil.getChest(ChestUtil.getDoubleChest(holder).getLeftSide()), player) == false)
+        if(isDoubleChest && ChestPreviewApi.isChestPreview(ChestUtil.getChest(ChestUtil.getDoubleChest(holder).getLeftSide()), player) == false)
             return;
 
         // Test si le joueur à la permission de détruire le coffre
@@ -213,7 +211,9 @@ public class ChestListener extends PluginListener<ChestPreview>
         while (iter.hasNext())
         {
             Block block = iter.next();
-            if(ChestUtil.isChest(block) && plugin.isChestPreview(ChestUtil.getChest(block)))
+            if(ChestUtil.isChest(block) && ChestPreviewApi.isChestPreview(ChestUtil.getChest(block)))
+                iter.remove();
+            else if(ChestPreviewApi.isChestPreview(ChestUtil.getChestNearby(block)))
                 iter.remove();
         }
     }
@@ -231,7 +231,9 @@ public class ChestListener extends PluginListener<ChestPreview>
         while (iter.hasNext())
         {
             Block block = iter.next();
-            if(ChestUtil.isChest(block) && plugin.isChestPreview(ChestUtil.getChest(block)))
+            if(ChestUtil.isChest(block) && ChestPreviewApi.isChestPreview(ChestUtil.getChest(block)))
+                iter.remove();
+            else if(ChestPreviewApi.isChestPreview(ChestUtil.getChestNearby(block)))
                 iter.remove();
         }
     }

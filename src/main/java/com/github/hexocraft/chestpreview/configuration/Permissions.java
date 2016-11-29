@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package com.github.hexosse.chestpreview.configuration;
+package com.github.hexocraft.chestpreview.configuration;
 
 import org.bukkit.command.CommandSender;
 

@@ -38,6 +38,7 @@ public class CpCommands extends Command<ChestPreviewPlugin>
 
         this.addSubCommand(new CpCommandHelp(plugin));
         this.addSubCommand(new CpCommandCreate(plugin));
+        this.addSubCommand(new CpCommandRename(plugin));
         this.addSubCommand(new CpCommandList(plugin));
         this.addSubCommand(new CpCommandReload(plugin));
     }

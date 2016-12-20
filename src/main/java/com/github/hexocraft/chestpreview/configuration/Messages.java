@@ -54,6 +54,7 @@ public class Messages extends Configuration
     @ConfigValue(path = "commands.help.cmd")		public List<String>   cHelp    = Arrays.asList("Display ChestPreview help");
     @ConfigValue(path = "commands.reload.cmd")		public List<String>   cReload  = Arrays.asList("Reload ChestPreview");
     @ConfigValue(path = "commands.create.cmd")		public List<String>   cCreate  = Arrays.asList("Enable chest preview!", " use /chestpreview create, then place your chest", " or right click an existing chest with a chest", " in your hand.");
+    @ConfigValue(path = "commands.rename.cmd")		public List<String>   cRename  = Arrays.asList("Rename chest preview!", " Look at the chest you want to rename", " then use /chestpreview rename \"&1&kKIT&r &4&lKing &f&lKit &1&kKIT&r\"");
     @ConfigValue(path = "commands.list.cmd")		public List<String>   cList    = Arrays.asList("List all chest preview");
 
     /* Messages */

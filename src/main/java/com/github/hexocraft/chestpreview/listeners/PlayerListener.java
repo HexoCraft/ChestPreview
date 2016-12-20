@@ -46,7 +46,7 @@ public class PlayerListener implements Listener
         if(ChestPreviewApi.isEnable(player) == false)
             return;
 
-        //
+        // Create a chest preview
         if(event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
         {
             boolean onChest = ChestUtil.isChest(event.getClickedBlock());
@@ -59,11 +59,10 @@ public class PlayerListener implements Listener
                 Chest nearbyChest = ChestUtil.getChestNearby(chest.getLocation());
 
                 // Création d'un chest preview
-                ChestPreviewApi.create(chest, event.getPlayer());
-                ChestPreviewApi.create(nearbyChest, event.getPlayer());
+                ChestPreviewApi.create(chest, player);
+                ChestPreviewApi.create(nearbyChest, player);
                 ChestPreviewApi.enable(false, player);
             }
         }
     }
-
 }

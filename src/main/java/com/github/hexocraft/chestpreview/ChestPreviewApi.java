@@ -103,10 +103,9 @@ public class ChestPreviewApi
 	}
 
 	// Rename a chest preview
-	public static void rename(Chest chest, Player player)
+	public static void rename(Chest chest, String name, Player player)
 	{
-		if(chest == null)
-			return;
+		if(chest == null || name.isEmpty()) return;
 
 		// Event
 		ChestPreviewRenameEvent event = new ChestPreviewRenameEvent(player, chest);
@@ -115,13 +114,13 @@ public class ChestPreviewApi
 			return;
 
 		// Create
-		rename(chest);
+		rename(chest, name);
 	}
 
 	// Create a chest preview
-	protected static void rename(Chest chest)
+	protected static void rename(Chest chest, String name)
 	{
-
+		ChestUtil.setName(chest, name);
 	}
 
 	// Remove a chest preview

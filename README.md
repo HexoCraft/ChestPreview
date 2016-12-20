@@ -6,8 +6,9 @@ None.
 
 ####Commands:
 * /ChestPreview &lt;help&gt; : Display ChestPreview help
-* /ChestPreview [create] : The next placed chest will be a ChestPreview
-* /ChestPreview [list] : List all the ChestPreview
+* /ChestPreview create : The next placed chest will be a ChestPreview
+* /ChestPreview rename : Rename your chest preview
+* /ChestPreview list : List all the ChestPreview
 * /AddLight [reload] : reload the plugin
 
 ####Permissions:

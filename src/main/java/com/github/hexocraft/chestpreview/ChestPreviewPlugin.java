@@ -80,7 +80,7 @@ public class ChestPreviewPlugin extends Plugin
     @Override
     public void onDisable()
     {
-        ChestPreviewApi.setActive(false);
+        ChestPreviewApi.disable();
 
         super.onDisable();
 

@@ -43,7 +43,7 @@ public class PlayerListener implements Listener
         final Player player = event.getPlayer();
 
         // Test si la création est activée
-        if(ChestPreviewApi.isActive() == false)
+        if(ChestPreviewApi.isEnable(player) == false)
             return;
 
         //
@@ -61,7 +61,7 @@ public class PlayerListener implements Listener
                 // Création d'un chest preview
                 ChestPreviewApi.create(chest, event.getPlayer());
                 ChestPreviewApi.create(nearbyChest, event.getPlayer());
-                ChestPreviewApi.setActive(false);
+                ChestPreviewApi.enable(false, player);
             }
         }
     }

@@ -37,7 +37,7 @@ public class CpCommandCreate extends Command<ChestPreviewPlugin>
     public CpCommandCreate(ChestPreviewPlugin plugin)
     {
         super("create", plugin);
-        this.setAliases(Lists.newArrayList("c"));
+        this.setAliases(Lists.newArrayList("c", "enable", "e"));
         this.setDescription(StringUtils.join(plugin.messages.cCreate,"\n"));
         this.setPermission(Permissions.ADMIN.toString());
     }
@@ -52,7 +52,7 @@ public class CpCommandCreate extends Command<ChestPreviewPlugin>
     @Override
     public boolean onCommand(CommandInfo commandInfo)
     {
-        ChestPreviewApi.setActive(true,commandInfo.getPlayer());
+        ChestPreviewApi.enable(true,commandInfo.getPlayer());
 
         return true;
     }

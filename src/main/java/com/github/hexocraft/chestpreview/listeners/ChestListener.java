@@ -68,6 +68,8 @@ public class ChestListener implements Listener
         }
         else if(ChestUtil.isChest(block))
         {
+            final Player player = event.getPlayer();
+
             // Récupère le Chest
             Chest chest = (Chest)event.getBlockPlaced().getState();
 
@@ -78,19 +80,19 @@ public class ChestListener implements Listener
             boolean isChestPreview = nearbyChest != null ? ChestPreviewApi.isChestPreview(nearbyChest) : false;
 
             // Test si la création du chest est autorisée
-            if(nearbyChest != null && !(isChestPreview == ChestPreviewApi.isActive()))
+            if(nearbyChest != null && !ChestPreviewApi.isEnable(player))
             {
                 event.setCancelled(true);
                 return;
             }
 
             // Test si la création est activée
-            if(ChestPreviewApi.isActive() == false)
+            if(ChestPreviewApi.isEnable(player) == false)
                 return;
 
             // Création d'un chest preview
-            ChestPreviewApi.create(chest, event.getPlayer());
-            ChestPreviewApi.setActive(false);
+            ChestPreviewApi.create(chest, player);
+            ChestPreviewApi.enable(false, player);
         }
     }
 
@@ -98,7 +100,7 @@ public class ChestListener implements Listener
     /**
      * @param event BlockBreakEvent
      */
-    @EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+    @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event)
     {
         // Récupère le Chest

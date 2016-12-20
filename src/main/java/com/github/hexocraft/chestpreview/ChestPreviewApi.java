@@ -18,6 +18,7 @@ package com.github.hexocraft.chestpreview;
 
 import com.github.hexocraft.chestpreview.events.ChestPreviewCreateEvent;
 import com.github.hexocraft.chestpreview.events.ChestPreviewRemoveEvent;
+import com.github.hexocraft.chestpreview.events.ChestPreviewRenameEvent;
 import com.github.hexocraftapi.message.Prefix;
 import com.github.hexocraftapi.message.predifined.message.SimplePrefixedMessage;
 import com.github.hexocraftapi.util.ChestUtil;
@@ -27,6 +28,10 @@ import org.bukkit.Location;
 import org.bukkit.block.Chest;
 import org.bukkit.entity.Player;
 
+import java.util.HashSet;
+import java.util.Set;
+import java.util.UUID;
+
 import static com.github.hexocraft.chestpreview.ChestPreviewPlugin.*;
 
 /**
@@ -34,34 +39,41 @@ import static com.github.hexocraft.chestpreview.ChestPreviewPlugin.*;
  */
 public class ChestPreviewApi
 {
-	private static boolean isActive = false;			// Indicate if ChestPreview creation is mActive or not
+	private static Set<UUID> activePlayers = new HashSet<>();
 
 
+	// Enable player to create a chest preview
+	public static void enable(UUID uuid) { activePlayers.add(uuid); }
+	public static void enable(Player player) { enable(player.getUniqueId()); }
 
-	public static boolean isActive() { return isActive; }
+	// Disable player from creating a chest preview
+	public static void disable(UUID uuid) { activePlayers.remove(uuid); }
+	public static void disable(Player player) { disable(player.getUniqueId()); }
+
+	// Disable all player from creating a chest preview
+	public static void disable() { activePlayers.clear(); }
+
+	// Check is player is enable
+	public static boolean isEnable(UUID uuid) { return activePlayers.contains(uuid); };
+	public static boolean isEnable(Player player) { return isEnable(player.getUniqueId()); };
 
 	// Enable or disable if ChestPreview creation
-	public static void setActive(boolean isActive) { ChestPreviewApi.isActive = isActive; }
-
-	// Enable or disable if ChestPreview creation
-	public static void setActive(boolean isActive, Player player)
+	public static void enable(boolean enable, Player player)
 	{
-		setActive(isActive);
+		if(player == null)  return;
 
-		SimplePrefixedMessage.toPlayer(player, new Prefix(messages.chatPrefix), isActive ? messages.mActive : messages.mInactive);
+		if(enable)
+			enable(player);
+		else
+			disable(player);
+
+		SimplePrefixedMessage.toPlayer(player, new Prefix(messages.chatPrefix), enable ? messages.mActive : messages.mInactive);
 	}
 
 
 	public static int count()
 	{
 		return config.chests.size();
-	}
-
-	// Create a chest preview
-	protected static void create(Chest chest)
-	{
-		config.chests.add(chest.getLocation());
-		config.save();
 	}
 
 	// Create a chest preview
@@ -83,11 +95,33 @@ public class ChestPreviewApi
 		SimplePrefixedMessage.toPlayer(player, new Prefix(messages.chatPrefix), messages.mCreated + " " + LocationUtil.toReadableString(chest.getLocation()));
 	}
 
-	// Remove a chest preview
-	protected static void remove(Chest chest)
+	// Create a chest preview
+	protected static void create(Chest chest)
 	{
-		config.chests.remove(chest.getLocation());
+		config.chests.add(chest.getLocation());
 		config.save();
+	}
+
+	// Rename a chest preview
+	public static void rename(Chest chest, Player player)
+	{
+		if(chest == null)
+			return;
+
+		// Event
+		ChestPreviewRenameEvent event = new ChestPreviewRenameEvent(player, chest);
+		instance.getServer().getPluginManager().callEvent(event);
+		if(event.isCancelled())
+			return;
+
+		// Create
+		rename(chest);
+	}
+
+	// Create a chest preview
+	protected static void rename(Chest chest)
+	{
+
 	}
 
 	// Remove a chest preview
@@ -104,6 +138,13 @@ public class ChestPreviewApi
 
 		// Send message
 		SimplePrefixedMessage.toPlayer(player, new Prefix(messages.chatPrefix), messages.mDestroyed + " " + LocationUtil.toReadableString(chest.getLocation()));
+	}
+
+	// Remove a chest preview
+	protected static void remove(Chest chest)
+	{
+		config.chests.remove(chest.getLocation());
+		config.save();
 	}
 
 	// Test if the Chest is a chest preview

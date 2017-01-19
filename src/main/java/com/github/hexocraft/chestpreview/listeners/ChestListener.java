@@ -80,7 +80,7 @@ public class ChestListener implements Listener
             boolean isChestPreview = nearbyChest != null ? ChestPreviewApi.isChestPreview(nearbyChest) : false;
 
             // Test si la création du chest est autorisée
-            if(nearbyChest != null && !ChestPreviewApi.isEnable(player))
+            if(isChestPreview && !ChestPreviewApi.isEnable(player))
             {
                 event.setCancelled(true);
                 return;
